@@ -1,0 +1,13 @@
+const express=require('express');
+const router=express.Router();
+const movieContoller = require('../controllers/movieControllers');
+const paymentContoller = require('../controllers/paymentController');
+const {protect} =require("../middleware/authMiddleware");
+router.post('/',movieContoller.postMovie);
+router.get('/',protect,movieContoller.getAllMovies);
+router.get('/:id',movieContoller.getMovieById);
+router.post('/book',movieContoller.bookMovie);
+router.put('/book',movieContoller.updateMovie);
+router.post('/payment',paymentContoller.payMoney);
+router.post('/verify',paymentContoller.verifyPayment);
+module.exports=router;
